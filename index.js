@@ -10,15 +10,14 @@ client.on("ready", () => {
 
 client.on("message", msg => {
   let members = [];
-  // client.users.cache.map(user => {
-  //   console.log(user);
-  // });
+  client.users.cache.map(user => {
+    members.push(user.username);
+  });
+
+  console.log(members);
 
   if (msg.author.username === "darlose04") {
-    // console.log(client.users.cache);
-    client.users.cache.map(user => {
-      console.log(user.username);
-    });
+    // console.log(members);
   }
 
   if (msg.author.username === "mwl4h9") {
