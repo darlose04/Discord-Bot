@@ -14,10 +14,18 @@ client.on("message", msg => {
     members.push(user.username);
   });
 
-  console.log(members);
+  // for (let i = 0; i < members.length; i++) {
+  //   if (
+  //     msg.author.username !== "BaseballBot" &&
+  //     msg.author.username !== "mwl4h9" &&
+  //     msg.author.username === members[i]
+  //   ) {
+  //     msg.reply(`Hello ${members[i]}`);
+  //   }
+  // }
 
   if (msg.author.username === "darlose04") {
-    // console.log(members);
+    msg.channel.send("My power grows as we speak!");
   }
 
   if (msg.author.username === "mwl4h9") {
