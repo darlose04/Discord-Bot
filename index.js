@@ -24,15 +24,19 @@ client.on("message", msg => {
   //   }
   // }
 
-  if (msg.author.username === "darlose04") {
-    msg.channel.send("My power grows as we speak!");
-  }
+  // if (msg.author.username === "darlose04") {
+  //   msg.channel.send("I am merely here to serve our fearless leader, Commissioner Luhn.");
+  //   setTimeout(() => {
+  //     msg.channel.send("All hail Commissioner Luhn!");
+  //   }, 5000)
+    
+  // }
 
-  if (msg.author.username === "mwl4h9") {
-    msg.channel.send("All hail Commissioner Luhn!!!");
-    msg.channel.send("All hail Commissioner Luhn!!!");
-    msg.channel.send("All hail Commissioner Luhn!!!");
-  }
+  // if (msg.author.username === "mwl4h9") {
+  //   msg.channel.send("All hail Commissioner Luhn!!!");
+  //   msg.channel.send("All hail Commissioner Luhn!!!");
+  //   msg.channel.send("All hail Commissioner Luhn!!!");
+  // }
 });
 
 client.on("message", msg => {});
