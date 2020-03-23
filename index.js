@@ -17,9 +17,9 @@ client.on("message", msg => {
   }
 
   if (msg.author.username === "mwl4h9") {
-    msg.reply("All hail Commisioner Luhn!!!");
-    msg.reply("All hail Commisioner Luhn!!!");
-    msg.reply("All hail Commisioner Luhn!!!");
+    msg.reply("All hail Commissioner Luhn!!!");
+    msg.reply("All hail Commissioner Luhn!!!");
+    msg.reply("All hail Commissioner Luhn!!!");
   }
 });
 
