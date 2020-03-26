@@ -1,4 +1,4 @@
-const { Client, MessageEmbed } = require("discord.js");
+const { Client, MessageReaction } = require("discord.js");
 const client = new Client();
 const axios = require("axios");
 require("dotenv").config();
@@ -97,7 +97,7 @@ client.on("message", msg => {
       Object.keys(stats).forEach(function(key) {
         statsArr.push(`${key}: ${stats[key]}`);
       });
-      console.log(statsArr);
+      // console.log(statsArr);
 
       msg.reply(statsArr);
     } catch (error) {
@@ -112,18 +112,9 @@ client.on("message", msg => {
     let year = parseInt(args.pop());
     let player = args.join(" ");
 
-    msg.reply(
-      "Please respond with the type of information you want: Batting, Starting, or Relieving."
-    );
-
-    if (msg.content === "Batting") {
-      const embed = new MessageEmbed()
-        .setTitle("Batting Data")
-        .setColor(0xff0000)
-        .setDescription("This is the batting info");
-
-      msg.channel.send(embed);
-    }
+    // msg.reply(
+    //   "Please respond with the type of information you want: Batting, Starting, or Relieving."
+    // );
 
     // getBatterInfo(player, year);
     // getStarterInfo(player, year);
