@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const axios = require("axios");
 require("dotenv").config();
 
-// const PREFIX = "!";
+const prefix = "!";
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
@@ -15,23 +15,17 @@ client.on("message", msg => {
     members.push(user.username);
   });
 
-  // for (let i = 0; i < members.length; i++) {
-  //   if (
-  //     msg.author.username !== "BaseballBot" &&
-  //     msg.author.username !== "mwl4h9" &&
-  //     msg.author.username === members[i]
-  //   ) {
-  //     msg.reply(`Hello ${members[i]}`);
-  //   }
-  // }
+  let args = msg.content.substring(prefix.length).split("!");
 
-  // if (msg.author.username === "darlose04") {
-  //   msg.channel.send("I am merely here to serve our fearless leader, Commissioner Luhn.");
-  //   setTimeout(() => {
-  //     msg.channel.send("All hail Commissioner Luhn!");
-  //   }, 5000)
+  if (msg.content[0] === "!") {
+    msg.reply("Is this ");
+  }
 
-  // }
+  console.log(args[0]);
+
+  const getPlayerInfo = async name => {
+    let info = await axios.get();
+  };
 
   // if (msg.author.username === "mwl4h9") {
   //   msg.channel.send("All hail Commissioner Luhn!!!");
