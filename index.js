@@ -29,8 +29,8 @@ client.on("message", msg => {
       msg.reply("Unable to retrieve batting data");
     }
 
-    // let stats = battingStats.data.filter(year => year === parseInt(season));
-    // console.log(stats);
+    let stats = battingStats.data.filter(item => item.season === season);
+    console.log(stats);
   };
 
   getPlayerInfo(player, year);
