@@ -23,7 +23,7 @@ client.on("message", msg => {
       let battingStats = await axios.get(`${url}playerbatting/players/${name}`);
 
       if (msg.content[0] === "!" && battingStats.data.length === 0) {
-        msg.reply("Unable to retrieve batting data");
+        msg.reply("Unable to retrieve data.");
       }
 
       let stats = battingStats.data.filter(item => item.season === season)[0];
@@ -54,7 +54,7 @@ client.on("message", msg => {
       );
 
       if (msg.content[0] === "!" && relievingStats.data.length === 0) {
-        msg.reply("Unable to retrieve relief data");
+        msg.reply("Unable to retrieve data");
       }
 
       let stats = relievingStats.data.filter(item => item.season === season)[0];
@@ -85,7 +85,7 @@ client.on("message", msg => {
       );
 
       if (msg.content[0] === "!" && startingStats.data.length === 0) {
-        msg.reply("Unable to retrieve starting data");
+        msg.reply("Unable to retrieve data");
       }
 
       let stats = startingStats.data.filter(item => item.season === season)[0];
