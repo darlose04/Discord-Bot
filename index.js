@@ -68,7 +68,7 @@ client.on("message", msg => {
       });
       console.log(statsArr);
 
-      msg.reply(statsArr);
+      msg.content.send(statsArr);
     } catch (error) {
       console.log("This is the error: ");
       console.log(error);
@@ -99,7 +99,7 @@ client.on("message", msg => {
       });
       console.log(statsArr);
 
-      msg.reply(statsArr);
+      msg.content.send(statsArr);
     } catch (error) {
       console.log("This is the error: ");
       console.log(error);
