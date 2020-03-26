@@ -15,14 +15,24 @@ client.on("message", msg => {
     members.push(user.username);
   });
 
-  let args = msg.content.substring(prefix.length).split("!");
+  let args = msg.content.substring(prefix.length).split(" ");
 
   let player = args[0];
+  let year = args.pop();
 
-  const getPlayerInfo = async name => {
+  console.log(args);
+  console.log(year);
+
+  const getPlayerInfo = async (name, season) => {
     const url = "https://www.fgbaseballapi.com/api/";
+
     let battingStats = await axios.get(`${url}playerbatting/players/${name}`);
-    console.log(battingStats.data);
+
+    if (msg.content[0] === "!" && battingStats.data.length === 0) {
+      msg.reply("Unable to retrieve data");
+    }
+
+    // console.log(battingStats.data);
   };
 
   getPlayerInfo(player);
