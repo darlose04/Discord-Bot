@@ -17,11 +17,8 @@ client.on("message", msg => {
 
   let args = msg.content.substring(prefix.length).split(" ");
 
-  let player = args[0];
   let year = args.pop();
-
-  console.log(args);
-  console.log(year);
+  let player = args.join(" ");
 
   const getPlayerInfo = async (name, season) => {
     const url = "https://www.fgbaseballapi.com/api/";
@@ -31,11 +28,15 @@ client.on("message", msg => {
     if (msg.content[0] === "!" && battingStats.data.length === 0) {
       msg.reply("Unable to retrieve data");
     }
-
-    // console.log(battingStats.data);
+    console.log(season);
+    battingStats.data.map(item => {
+      if (item.season === season) {
+        console.log(item);
+      }
+    });
   };
 
-  getPlayerInfo(player);
+  getPlayerInfo(player, year);
 });
 
 client.on("message", msg => {});
