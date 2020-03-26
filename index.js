@@ -15,26 +15,42 @@ client.on("message", msg => {
     members.push(user.username);
   });
 
-  let args = msg.content.substring(prefix.length).split(" ");
-
-  let year = parseInt(args.pop());
-  let player = args.join(" ");
-
   const getPlayerInfo = async (name, season) => {
-    const url = "https://www.fgbaseballapi.com/api/";
+    try {
+      const url = "https://www.fgbaseballapi.com/api/";
 
-    let battingStats = await axios.get(`${url}playerbatting/players/${name}`);
+      let battingStats = await axios.get(`${url}playerbatting/players/${name}`);
 
-    if (msg.content[0] === "!" && battingStats.data.length === 0) {
-      msg.reply("Unable to retrieve batting data");
+      if (msg.content[0] === "!" && battingStats.data.length === 0) {
+        msg.reply("Unable to retrieve batting data");
+      }
+
+      let stats = battingStats.data.filter(item => item.season === season)[0];
+
+      let statsArr = [];
+
+      // console.log(stats);
+
+      Object.keys(stats).forEach(function(key) {
+        statsArr.push(`${key}: ${stats[key]}`);
+      });
+      console.log(statsArr);
+
+      msg.reply(statsArr);
+    } catch (error) {
+      console.log("This is the error: ");
+      console.log(error);
     }
-
-    let stats = battingStats.data.filter(item => item.season === season)[0];
-    // console.log(stats);
-    msg.reply(Object.keys(stats), Object.values(stats));
   };
 
-  getPlayerInfo(player, year);
+  if (msg.content[0] === "!") {
+    let args = msg.content.substring(prefix.length).split(" ");
+
+    let year = parseInt(args.pop());
+    let player = args.join(" ");
+
+    getPlayerInfo(player, year);
+  }
 });
 
 client.on("message", msg => {});
