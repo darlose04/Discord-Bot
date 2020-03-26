@@ -17,7 +17,7 @@ client.on("message", msg => {
 
   let args = msg.content.substring(prefix.length).split(" ");
 
-  let year = args.pop();
+  let year = parseInt(args.pop());
   let player = args.join(" ");
 
   const getPlayerInfo = async (name, season) => {
@@ -26,14 +26,11 @@ client.on("message", msg => {
     let battingStats = await axios.get(`${url}playerbatting/players/${name}`);
 
     if (msg.content[0] === "!" && battingStats.data.length === 0) {
-      msg.reply("Unable to retrieve data");
+      msg.reply("Unable to retrieve batting data");
     }
-    console.log(season);
-    battingStats.data.map(item => {
-      if (item.season === season) {
-        console.log(item);
-      }
-    });
+
+    // let stats = battingStats.data.filter(year => year === parseInt(season));
+    // console.log(stats);
   };
 
   getPlayerInfo(player, year);
