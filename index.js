@@ -15,7 +15,70 @@ client.on("message", msg => {
     members.push(user.username);
   });
 
-  const getPlayerInfo = async (name, season) => {
+  // get relief pitching information
+  const getRelieverInfo = async (name, season) => {
+    try {
+      const url = "https://www.fgbaseballapi.com/api/";
+
+      let relievingStats = await axios.get(
+        `${url}playerrelieving/players/${name}`
+      );
+
+      if (msg.content[0] === "!" && relievingStats.data.length === 0) {
+        msg.reply("Unable to retrieve relief data");
+      }
+
+      let stats = relievingStats.data.filter(item => item.season === season)[0];
+
+      let statsArr = [];
+
+      // console.log(stats);
+
+      Object.keys(stats).forEach(function(key) {
+        statsArr.push(`${key}: ${stats[key]}`);
+      });
+      console.log(statsArr);
+
+      msg.reply(statsArr);
+    } catch (error) {
+      console.log("This is the error: ");
+      console.log(error);
+    }
+  };
+
+  // get starting pitching information
+  const getStarterInfo = async (name, season) => {
+    try {
+      const url = "https://www.fgbaseballapi.com/api/";
+
+      let startingStats = await axios.get(
+        `${url}playerstarting/players/${name}`
+      );
+
+      if (msg.content[0] === "!" && startingStats.data.length === 0) {
+        msg.reply("Unable to retrieve starting data");
+      }
+
+      let stats = startingStats.data.filter(item => item.season === season)[0];
+
+      let statsArr = [];
+
+      // console.log(stats);
+
+      Object.keys(stats).forEach(function(key) {
+        statsArr.push(`${key}: ${stats[key]}`);
+      });
+      console.log(statsArr);
+
+      msg.reply(statsArr);
+    } catch (error) {
+      console.log("This is the error: ");
+      console.log(error);
+    }
+  };
+
+  // get batting information
+  const getBatterInfo = async (name, season) => {
     try {
       const url = "https://www.fgbaseballapi.com/api/";
 
@@ -49,7 +112,22 @@ client.on("message", msg => {
     let year = parseInt(args.pop());
     let player = args.join(" ");
 
-    getPlayerInfo(player, year);
+    msg.reply(
+      "Please respond with the type of information you want: Batting, Starting, or Relieving."
+    );
+
+    if (msg.isMentioned(client.user)) {
+      console.log(true);
+    }
+
+    console.log(msg.content);
+
+    // if (msg.reply === "Batting" || msg.reply === "batting") {
+
+    // }
+    // getBatterInfo(player, year);
+    // getStarterInfo(player, year);
+    // getRelieverInfo(player, year);
   }
 });
 
