@@ -1,5 +1,5 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
+const { Client, MessageEmbed } = require("discord.js");
+const client = new Client();
 const axios = require("axios");
 require("dotenv").config();
 
@@ -116,22 +116,20 @@ client.on("message", msg => {
       "Please respond with the type of information you want: Batting, Starting, or Relieving."
     );
 
-    if (msg.isMentioned(client.user)) {
-      console.log(true);
+    if (msg.content === "Batting") {
+      const embed = new MessageEmbed()
+        .setTitle("Batting Data")
+        .setColor(0xff0000)
+        .setDescription("This is the batting info");
+
+      msg.channel.send(embed);
     }
 
-    console.log(msg.content);
-
-    // if (msg.reply === "Batting" || msg.reply === "batting") {
-
-    // }
     // getBatterInfo(player, year);
     // getStarterInfo(player, year);
     // getRelieverInfo(player, year);
   }
 });
-
-client.on("message", msg => {});
 
 let token = process.env.TOKEN;
 
